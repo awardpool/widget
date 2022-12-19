@@ -1,13 +1,13 @@
 function apHook() {
 
-  //      AWARD POOL - Create Amazing
-  //        /\__/\   - js by @rUv
-  //       ( o.o  )  - v1.0.0
-  //         >^<     - https://github.com/awardpool/awardpool-hook
-
-
-// Set Timer in Seconds to use with apTimer()
-  const timer = 25;
+  //      AWARD POOL
+  //    Create Amazing
+  //
+  //        /\__/\
+  //       ( o.o  )
+  //         >^<
+  //
+  //     js by @rUv
 
   // Get the APuid & Version value from the URL query string
   const urlParams = new URLSearchParams(window.location.search);
@@ -21,7 +21,7 @@ function apHook() {
     // Construct the full URL for the GET request
     const url = `https://app.awardpool.com/version-${version || 'live'}/api/1.1/wf/hook/?uid=${APuid}&version=${version || 'live'}`;
 
-  // This function is using the Fetch API to make a request to the Award Pool API
+  // This function is using the Fetch API to make a request to the Award Pool API.
 
     // Make the GET request
     fetch(url)
@@ -34,59 +34,21 @@ function apHook() {
         console.log(data.status);
       })
       .catch(error => {
-        // Handle any errors here.
+        // Handle any errors here
       });
   } else {
     console.log(`❌ APuid is empty or null`);
   }
   }
+// Call the apHook function when the page finishes loading
+// window.addEventListener('load', apHook);
 
-    // Use this function to execute timer instead of remove slashes below
-    //   window.addEventListener('load', apTimer);
+// Set timer in seconds 
+  var time = 5;
+  
+function apTimer() {
+  setTimeout(apHook, time * 1000);
+}
 
-    // This function is used to set a timer before executing the apHook() function.
-  function apTimer() {
-    setTimeout(apHook, timer * 1000);
-  }
-
-// This function is used to execute apHook() when a user scrolls to a part of the page with the div id=apHook
-
-  function APScroll() {
-    const apHook = document.getElementById('apHook');
-    const apHookPosition = apHook.getBoundingClientRect();
-    const apHookPositionTop = apHookPosition.top;
-    const apHookPositionBottom = apHookPosition.bottom;
-    const apHookPositionLeft = apHookPosition.left;
-    const apHookPositionRight = apHookPosition.right;
-    const apHookPositionWidth = apHookPosition.width;
-    const apHookPositionHeight = apHookPosition.height;
-    const apHookPositionX = apHookPosition.x;
-    const apHookPositionY = apHookPosition.y;
-    const apHookPositionWindowTop = apHookPosition.top + window.pageYOffset;
-    const apHookPositionWindowBottom = apHookPosition.bottom + window.pageYOffset;
-    const apHookPositionWindowLeft = apHookPosition.left + window.pageXOffset;
-    const apHookPositionWindowRight = apHookPosition.right + window.pageXOffset;
-    const apHookPositionWindowX = apHookPosition.x + window.pageXOffset;
-    const apHookPositionWindowY = apHookPosition.y + window.pageYOffset;
-
-    // This function is used to execute apHook() when a user scrolls to a part of the page with the div id=apHook
-    if (apHookPositionWindowTop < window.innerHeight && apHookPositionWindowBottom > 0) {
-      console.log('apHook is in the viewport');
-      apHook();
-    } else {
-      console.log('apHook is not in the viewport');
-    }
-  }
-
-  // Remove slashes with window.events to enable or disable various functions.  
-  // Call the APScroll function when the page finishes loading, used with scroll function. 
-  //  window.addEventListener('load', APScroll);
-
-  // Call the APScroll function when the page is scrolled, used with scroll function. 
-  //  window.addEventListener('scroll', APScroll);
-
-  // Call the APScroll function when the page is resized, used with scroll function. 
-  //  window.addEventListener('resize', APScroll);
-
-  // Call the apHook function when the page finishes loading
-  window.addEventListener('load', apHook);
+// Call the apHook function when the page finishes loading
+window.addEventListener('load', apTimer);
